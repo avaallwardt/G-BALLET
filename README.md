@@ -2,7 +2,7 @@
 
 **G**eometry-**B**ased **A**nalysis of **L**andmarks & **L**ines for **E**nhancing **T**echnique
 
-Upload a photo of a ballet arabesque and receive feedback across 16 technique criteria.
+Upload a photo of a ballet arabesque and receive feedback across 16 classical ballet technique criteria.
 
 **Live demo:** https://avaallwardt.github.io/gballet/
 
@@ -11,11 +11,11 @@ Upload a photo of a ballet arabesque and receive feedback across 16 technique cr
 ## What GBALLET does
 
 1. Verifies the photo is a ballet arabesque (possible error inputs: dancer not detected, leg not lifted, leg in front, attitude, photo upside down)
-2. Translates geometric measurements into 16 interpretable criteria that measure technique of the supporting leg, working leg, hips, chest & back, head, and arms
+2. Translates geometric measurements into 16 interpretable criteria that measure technique of the supporting leg, working leg, hips, chest and back, head, and arms
 3. Lists unsatisfied criteria in the form of corrections for the dancer, then displays satisfied criteria grouped by technique category
-4. Displays the measurement that informs each criterion score, and draws measurement on the photo
+4. Displays the measurement that informs each criterion score, and draws the measurement on the photo
 
-There's no trained classifier. MediaPipe identifies the body landmarks. Then a geometric framework I developed analyzes ballet technique from the landmarks.
+There's no trained classifier. MediaPipe identifies the body landmarks. Then a geometric framework I developed assesses ballet technique from the landmarks.
 
 ## How it works
 
@@ -114,7 +114,7 @@ pose_landmarker_full.task  MediaPipe pose model
 ## Limitations and next steps
 
 - A single 2D photo can't fully capture 3D rotation, so turnout criteria depend on camera angle.
-- Supporting leg turnout uses raw triangle area, which also depends on how large the dancer is in the frame.
-- Several thresholds are first-pass values from a small set of photos and need more labeled examples.
-- Arm criteria are written for 1st arabesque.
-- Ballet is better judged in motion than in a static pose. Video analysis is the natural next step.
+- Supporting leg turnout uses raw ankle-heel-toe triangle area, which depends on how large the dancer is in the frame.
+- Several thresholds are subjective based on my classical ballet training. Other ballet styles, such as Balanchine, may define other criteria for an optimal arabesque.
+- Arm criteria are written for 1st arabesque only.
+- Image analysis is only suitable for static poses, including arabesque. Analyzing ballet movement would require video analysis.

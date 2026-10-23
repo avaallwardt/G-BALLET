@@ -61,7 +61,7 @@ photo → landmarks → interpretable features → criteria scores → feedback
 | Side arm | Below shoulder | wrist vs. shoulder height | wrist below shoulder |
 | | Straight | shoulder–elbow–wrist angle | ≥ 165° |
 
-Fingers soft is listed but not scored yet.
+Fingers soft is listed but not yet scored due to the lack of granularity in finger landmark detection.
 
 ## Architecture
 
@@ -118,3 +118,9 @@ pose_landmarker_full.task  MediaPipe pose model
 - Several thresholds are subjective based on my classical ballet training. Other ballet styles, such as Balanchine, may define other criteria for an optimal arabesque.
 - Arm criteria are written for 1st arabesque only.
 - Image analysis is only suitable for static poses, including arabesque. Analyzing ballet movement would require video analysis.
+
+## Citation
+- Independently designed the criteria for analyzing an arabesque.
+- Independently developed the code for for extracting landmarks, computing measurements, and mapping measurements to interpretable ballet technique corrections.
+- All technique analysis is based on my own ballet training.
+- Used Claude to create frontend and setup the live demo.

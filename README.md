@@ -121,6 +121,6 @@ pose_landmarker_full.task  MediaPipe pose model
 
 ## Citation
 - Independently designed the criteria for analyzing an arabesque.
-- Independently developed the code for for extracting landmarks, computing measurements, and mapping measurements to interpretable ballet technique corrections.
+- Independently developed the code for extracting landmarks, computing measurements, and mapping measurements to interpretable ballet technique corrections.
 - All technique analysis is based on my own ballet training.
 - Used Claude to create frontend and setup the live demo.

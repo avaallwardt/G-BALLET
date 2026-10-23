@@ -48,12 +48,30 @@ const landmarkerReady = loadLandmarker();
 const pythonReady = loadPython();
 export const ready = Promise.all([landmarkerReady, pythonReady]);
 
+// Phone photos often store their pixels sideways plus a "rotate me" tag (EXIF orientation).
+// The page displays them upright, but MediaPipe would read the raw sideways pixels, so the photo
+// is drawn upright onto a canvas first (drawing applies the rotation), and very large photos are
+// scaled down, since some phones can't handle images bigger than 4096 pixels. Landmarks are fractions of the
+// width and height, so scaling doesn't change any measurement.
+const MAX_SIDE = 4096;
+
+function uprightCanvas(img) {
+  const w = img.naturalWidth, h = img.naturalHeight;
+  const scale = Math.min(1, MAX_SIDE / Math.max(w, h));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(w * scale);
+  canvas.height = Math.round(h * scale);
+  canvas.getContext("2d").drawImage(img, 0, 0, canvas.width, canvas.height);
+  return canvas;
+}
+
 export async function analyzeImage(img) {
   const [landmarker, py] = await ready;
-  const detection = landmarker.detect(img);
+  const canvas = uprightCanvas(img);
+  const detection = landmarker.detect(canvas);
   const landmarks = (detection.landmarks && detection.landmarks[0] || [])
     .map((l) => ({ x: l.x, y: l.y, visibility: l.visibility ?? 1 }));
-  const out = py.globals.get("run")(JSON.stringify(landmarks), img.naturalWidth, img.naturalHeight);
+  const out = py.globals.get("run")(JSON.stringify(landmarks), canvas.width, canvas.height);
   return JSON.parse(out);
 }
 

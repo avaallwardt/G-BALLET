@@ -33,7 +33,7 @@ def analyze(file):
 
 def analyze_landmarks(landmarks, width, height):
     '''
-    (added) Same as analyze(), but starting from landmarks that were already detected
+    Same as analyze(), but starting from landmarks that were already detected
     (the website runs MediaPipe in the browser, then calls this).
 
     landmarks: list of 33 dicts with x, y (normalized) and visibility -- or an empty list if no pose was found
@@ -67,7 +67,7 @@ def analyze_pose(raw, points):
         rows = []
         for r in scored[key]:
             r = dict(r, constraint=CONSTRAINTS[r["key"]], score_label=SCORE_LABELS[r["score"]])
-            # (added) the geometry behind this score: the calculation, and what to draw on the photo
+            # the geometry behind this score: the calculation, and what to draw on the photo
             r["geometry"] = explain(r["key"], f, T) if r["feature"] else {"shapes": [], "math": []}
             rows.append(r)
             if r["score"] != "na":

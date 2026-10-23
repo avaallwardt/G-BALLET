@@ -17,7 +17,7 @@ def midpoint(a, b):
 
 def lean_from_vertical(bottom, top, facing):
     '''
-    (added) Angle (degrees) of the line bottom -> top away from straight up.
+    Angle (degrees) of the line bottom -> top away from straight up.
     Positive = leaning toward the direction the dancer faces, negative = leaning back.
     Y-coordinate increases downward, so "up" is negative y.
     '''
@@ -26,7 +26,7 @@ def lean_from_vertical(bottom, top, facing):
 
 def elevation(start, end, facing):
     '''
-    (added) Angle (degrees) of the line start -> end above horizontal, measured toward the
+    Angle (degrees) of the line start -> end above horizontal, measured toward the
     direction the dancer faces. 0 = level, positive = upward, negative = downward.
     '''
     return math.degrees(math.atan2(start.y - end.y, (end.x - start.x) * facing))
@@ -35,7 +35,7 @@ def elevation(start, end, facing):
 def extract_features(raw, points):
     '''
     Input:
-    raw:    MediaPipe NormalizedLandmarks (used where your thresholds were calibrated on raw normalized coordinates)
+    raw:    MediaPipe NormalizedLandmarks (used where thresholds were calibrated on raw normalized coordinates)
     points: the same landmarks with x and y in the same units (used for every angle)
 
     Output:
@@ -65,11 +65,11 @@ def extract_features(raw, points):
     shoulder_mid = midpoint(p[11], p[12])   # stands in for the sternum (MediaPipe has no sternum landmark)
     head_center = midpoint(p[LEFT_EAR], p[RIGHT_EAR])
 
-    # (added) Which way is the dancer facing?
+    # Which way is the dancer facing?
     # In an arabesque the working leg extends behind the body, so the dancer faces away from the working foot.
     # facing = +1 means facing image-right, -1 means facing image-left.
-    # Your cross product rules were written as "working leg is left -> cross should be negative", which matched
-    # your photos because MediaPipe labelled the working leg "left" whenever the dancer faced image-left.
+    # The original cross product rules were written as "working leg is left -> cross should be negative", which matched
+    # the test photos because MediaPipe labelled the working leg "left" whenever the dancer faced image-left.
     # Writing the rule in terms of facing direction gives the same answer on those photos, and still works
     # if MediaPipe swaps left/right (which it sometimes does on side views).
     facing = -1 if p[W["ankle"]].x > hip_mid.x else 1
@@ -104,7 +104,7 @@ def extract_features(raw, points):
 
     # Metric 5: Supporting leg turnout
     # With more turnout, the heel moves behind the ankle from 2D perspective, so the ankle-heel-toe triangle collapses
-    # (uses raw normalized coordinates, because that's what your 0.0004 threshold was measured in)
+    # (uses raw normalized coordinates, because that's what the 0.0004 threshold was measured in)
     f["supporting_foot_area"] = triangle_area(raw[S["ankle"]], raw[S["heel"]], raw[S["foot"]])
 
     # Metric 6: Working leg turnout
@@ -114,7 +114,7 @@ def extract_features(raw, points):
     f["working_heel_offset"] = perp_dist(p[W["heel"]], p[W["ankle"]], p[W["foot"]]) / foot_length
 
     # Hips: square, should not be opening hip of working leg
-    # (added) torso length = distance from hip midpoint to shoulder midpoint; used to make distances size-independent
+    # torso length = distance from hip midpoint to shoulder midpoint; used to make distances size-independent
     torso_length = dist(hip_mid, shoulder_mid)
     f["hip_separation"] = dist(p[23], p[24]) / torso_length
     # hip_tilt = difference between left hip height and right hip height (working hip above supporting hip is positive)
@@ -129,11 +129,11 @@ def extract_features(raw, points):
     f["shoulder_separation"] = dist(p[11], p[12]) / torso_length
 
     # Head: looking slightly upward over the finger
-    # (added) gaze = direction from center of head (between the ears) to the nose
+    # gaze = direction from center of head (between the ears) to the nose
     f["gaze_angle"] = elevation(head_center, p[NOSE], facing)
 
     # Arms
-    # (added) the arm in front of the body is the one whose wrist reaches furthest in the direction the dancer faces
+    # the arm in front of the body is the one whose wrist reaches furthest in the direction the dancer faces
     if p[LEFT["wrist"]].x * facing > p[RIGHT["wrist"]].x * facing:
         F, A = LEFT, RIGHT
     else:
@@ -152,7 +152,7 @@ def extract_features(raw, points):
     f["side_wrist_below_shoulder"] = (p[A["wrist"]].y - p[A["shoulder"]].y) / torso_length
     f["side_elbow_angle"] = angle_at(p[A["shoulder"]], p[A["elbow"]], p[A["wrist"]])
 
-    # (added) the raw numbers behind each feature, so the website can show the geometry
+    # the raw numbers behind each feature, so the website can show the geometry
     f["_idx"] = {"W": W, "S": S, "F": F, "A": A}
     f["_raw"] = {
         "working_cross": working_cross,
@@ -164,7 +164,7 @@ def extract_features(raw, points):
         "shoulder_dist": dist(p[11], p[12]),
     }
 
-    # (added) how confident MediaPipe is about the landmarks each criterion uses
+    # how confident MediaPipe is about the landmarks each criterion uses
     vis = lambda *idx: min(p[i].visibility for i in idx)
     f["_vis"] = {
         "legs": vis(23, 24, 25, 26, 27, 28),
@@ -174,7 +174,7 @@ def extract_features(raw, points):
         "front_arm": vis(F["shoulder"], F["elbow"], F["wrist"], F["index"]),
         "side_arm": vis(A["shoulder"], A["elbow"], A["wrist"]),
     }
-    # (added) a few extra measurements used only by the "is this an arabesque?" check
+    # a few extra measurements used only by the "is this an arabesque?" check
     # MediaPipe still guesses landmarks that are cut off, so check the legs are actually inside the photo
     f["_legs_in_frame"] = all(-0.02 <= raw[i].x <= 1.02 and -0.02 <= raw[i].y <= 1.02 for i in range(23, 33))
     f["_supporting_leg_lean"] = abs(lean_from_vertical(p[S["ankle"]], p[S["hip"]], facing))

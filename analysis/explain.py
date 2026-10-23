@@ -1,4 +1,4 @@
-# (added) Show the geometry behind each criterion.
+# Show the geometry behind each criterion.
 #
 # For every constraint this returns:
 #   math:   the measurement in plain language, e.g. ["Knee angle (hip–knee–ankle)", "176.0°"]

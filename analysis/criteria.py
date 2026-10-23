@@ -5,67 +5,62 @@
 # (output can depend on what the specific image has. For example, if the angle is significantly lower than needed, we output something specific…)
 #
 # Scores: "good", "moderate" (moderate issue), "major" (major issue), "na" (not scored)
-#
-# Where each threshold came from:
-#   [code]  your threshold in balletanalysis.py
-#   [notes] your number in the technique rules
-#   [new]   no number existed yet -- first-pass value set from the 9 test photos; worth re-checking against more photos
 
 from .feedback import FEEDBACK, NOT_ARABESQUE
 
 T = {
     # Supporting knee
-    "supporting_knee_straight": 177,     # [new] at or above this, the knee reads as straight either way (stops tiny landmark noise from flipping the cross product sign)
-    "hyperextension_limit": 170,         # [code] if supporting_angle < 170: "Overhyperextended"
-    "slightly_bent": 160,                # [new] bent knee between this and 175 = "slightly bent", below = "Supporting knee bent."
-    "working_knee_straight": 175,        # [code] Metric 1 (first version): if working_angle > 175.0: straight
-    "working_knee_major": 165,           # [new]
+    "supporting_knee_straight": 177,     # at or above this, the knee reads as straight either way (stops tiny landmark noise from flipping the cross product sign)
+    "hyperextension_limit": 170,         # if supporting_angle < 170: "Overhyperextended"
+    "slightly_bent": 160,                # bent knee between this and 175 = "slightly bent", below = "Supporting knee bent."
+    "working_knee_straight": 175,        # Metric 1 (first version): if working_angle > 175.0: straight
+    "working_knee_major": 165,
     # Working leg height
-    "height_goal": 90,                   # [code] if height > 90
-    "height_almost": 75,                 # [new]
+    "height_goal": 90,                   # if height > 90
+    "height_almost": 75,
     # Wing
-    "wing_low": 165,                     # [code] if 165 < wing_deg < 180
-    "wing_major": 150,                   # [new]
+    "wing_low": 165,                     # if 165 < wing_deg < 180
+    "wing_major": 150,
     # Supporting leg turnout (raw normalized triangle area)
-    "turnout_area": 0.0004,              # [code] "We will say turned out supporting leg is 0.0004 and below, else is turned in"
-    "turnout_area_major": 0.0009,        # [code] "turned in max : triangle area: ~ 0.0009"
+    "turnout_area": 0.0004,              # "We will say turned out supporting leg is 0.0004 and below, else is turned in"
+    "turnout_area_major": 0.0009,        # "turned in max : triangle area: ~ 0.0009"
     # Working leg turnout (heel distance from ankle-toe line / foot length)
-    "heel_offset": 0.10,                 # [new]
-    "heel_offset_major": 0.20,           # [new]
+    "heel_offset": 0.10,
+    "heel_offset_major": 0.20,
     # Hips (distance between hip landmarks / torso length)
-    "hip_separation": 0.30,              # [new]
-    "hip_separation_major": 0.45,        # [new]
+    "hip_separation": 0.30,
+    "hip_separation_major": 0.45,
     # Chest & Back
-    "torso_lean": 45,                    # [new] degrees forward from vertical
-    "torso_lean_major": 60,              # [new]
-    "sternum_head": 15,                  # [new] degrees from vertical either way
-    "sternum_head_major": 25,            # [new]
-    "shoulder_separation": 0.25,         # [new]
-    "shoulder_separation_major": 0.45,   # [new]
+    "torso_lean": 45,                    # degrees forward from vertical
+    "torso_lean_major": 60,
+    "sternum_head": 15,                  # degrees from vertical either way
+    "sternum_head_major": 25,
+    "shoulder_separation": 0.25,
+    "shoulder_separation_major": 0.45,
     # Head
-    "gaze_min": 5,                       # [new] degrees above level
-    "gaze_max": 35,                      # [new]
+    "gaze_min": 5,                       # degrees above level
+    "gaze_max": 35,
     # Front arm
-    "front_arm_min": 25,                 # [notes, updated] was 30-45 degree angle, lowered to 25-30
-    "front_arm_max": 30,                 # [notes, updated]
-    "front_arm_slack": 10,               # [new] within 10 degrees of the range = moderate, further = major
-    "wrist_max": 170,                    # [new] around [notes] "maybe 150 degrees for break in wrist"
-    "wrist_min": 140,                    # [new]
-    "elbow_max": 175,                    # [new] [notes] "slightly less than 180 degrees"
-    "elbow_min": 155,                    # [new]
+    "front_arm_min": 25,                 # lowered from 30-45 to 25-30
+    "front_arm_max": 30,
+    "front_arm_slack": 10,               # within 10 degrees of the range = moderate, further = major
+    "wrist_max": 170,                    # around 150 degrees for break in wrist
+    "wrist_min": 140,
+    "elbow_max": 175,                    # slightly less than 180 degrees
+    "elbow_min": 155,
     # Side arm
-    "side_elbow": 165,                   # [new] [notes] "should be 180 degrees"
+    "side_elbow": 165,                   # should be 180 degrees
     # Is it a 1st arabesque arm? (front arm angle must be in this window)
-    "first_arabesque_arm_min": -15,      # [new]
-    "first_arabesque_arm_max": 60,       # [new]
+    "first_arabesque_arm_min": -15,
+    "first_arabesque_arm_max": 60,
     # Visibility
-    "min_visibility": 0.5,               # [new] MediaPipe visibility below this = can't see it clearly
+    "min_visibility": 0.5,               # MediaPipe visibility below this = can't see it clearly
 }
 
 
 def check_arabesque(f):
     '''
-    (added) Is this an arabesque photo? Returns None if yes, otherwise the reason it isn't.
+    Is this an arabesque photo? Returns None if yes, otherwise the reason it isn't.
     '''
     if f["_vis"]["legs"] < T["min_visibility"] or not f["_legs_in_frame"]:
         return "legs_hidden"
@@ -137,7 +132,7 @@ def score_criteria(f):
     rows = []
 
     # Metric 1: Working Leg Straight
-    # Combines your two versions: the cross product says which way the knee bends,
+    # Combines both versions of Metric 1: the cross product says which way the knee bends,
     # and the original > 175 rule keeps a nearly straight knee from counting as bent.
     angle = f["working_knee_angle"]
     feat = f"working knee angle = {angle:.0f}°"

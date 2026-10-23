@@ -12,7 +12,7 @@
 from dataclasses import dataclass
 from pathlib import Path
 
-# (added) MediaPipe, numpy and Pillow are only needed when this file runs the detector itself (cli.py, tests).
+# MediaPipe, numpy and Pillow are only needed when this file runs the detector itself (cli.py, tests).
 # On the website, MediaPipe runs in the browser and this Python code receives the landmarks, so these
 # imports are allowed to be missing there.
 try:
@@ -46,7 +46,7 @@ _detector = None
 
 
 def get_detector():
-    # (added) the detector is created once and reused, so the website doesn't reload the model on every upload
+    # the detector is created once and reused, so the website doesn't reload the model on every upload
     global _detector
     if _detector is None:
         # Load pose model (file containing learned weights/parameters) (choose model file)
@@ -68,7 +68,7 @@ def get_detector():
 
 @dataclass
 class Point:
-    # (added) a landmark with x and y in the same units, so it works with angle_at, cross, dist, etc.
+    # a landmark with x and y in the same units, so it works with angle_at, cross, dist, etc.
     x: float
     y: float
     visibility: float = 1.0
@@ -76,7 +76,7 @@ class Point:
 
 def load_image(file):
     '''
-    (added) Load an uploaded photo for MediaPipe.
+    Load an uploaded photo for MediaPipe.
 
     However, this calculation assumes the image has proper orientation -- phone photos often store
     "rotate me" in their EXIF data instead of actually being rotated, so we apply that rotation first.
@@ -91,7 +91,7 @@ def detect_landmarks(file):
     Returns (raw, points, width, height), or None if no pose was found.
 
     raw:    MediaPipe's NormalizedLandmark objects (x divided by image width, y divided by image height)
-    points: (added) the same landmarks with x rescaled to units of image height.
+    points: the same landmarks with x rescaled to units of image height.
             Normalized x and y are divided by different numbers on a non-square photo, so one unit of x
             isn't the same length as one unit of y, and that skews angles. Multiplying x by width/height
             puts both in the same units -- still resolution-independent.
@@ -113,7 +113,7 @@ def detect_landmarks(file):
 
 def to_points(landmarks, width, height):
     '''
-    (added) Same landmarks with x rescaled to units of image height (see detect_landmarks).
+    Same landmarks with x rescaled to units of image height (see detect_landmarks).
     Used both here and on the website, where the landmarks come from MediaPipe running in the browser.
     '''
     aspect = width / height

@@ -1,6 +1,5 @@
 # Geometry helpers
-# These are the functions from balletanalysis.py, moved here so every metric can share them.
-# Docstrings and comments are kept as you wrote them. Anything added is marked "(added)".
+# Shared geometry functions used by every metric (originally written in exploration/balletanalysis.py).
 
 # Import math to have functions like sqrt
 import math
@@ -24,7 +23,7 @@ def angle_at(a, b, c):
     dot = ba[0] * bc[0] + ba[1] * bc[1]
     cos = dot / (mag_ba * mag_bc)
 
-    # (added) floating point error can push cos slightly past 1 or -1, which would crash acos
+    # floating point error can push cos slightly past 1 or -1, which would crash acos
     cos = max(-1.0, min(1.0, cos))
 
     angle_radians = math.acos(cos) # arccos ensures we get the principal angle between the two vectors (btwn 0 and 180)
@@ -106,7 +105,6 @@ def perp_dist(p, a, b):
     # perpendicular direction vector through p
     p_line = (-a_b[1], a_b[0])
 
-    # (added) finished from here, following your steps
     # draw p_line
     # points on p_line are p + s * p_line, points on line ab are a + t * a_b
 

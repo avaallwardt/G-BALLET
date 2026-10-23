@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GBALLET: Ballet Technique Analysis</title>
+  <meta name="description" content="Geometry-Based Analysis of Landmarks &amp; Lines for Enhancing Technique">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="web/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="./"><span class="brand-mark">GBALLET</span><span class="brand-sub">Ballet Technique Analysis</span></a>
+      <button id="again" class="btn btn-secondary" type="button" hidden>New analysis</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- Upload -->
+    <section id="upload" class="landing">
+      <div class="landing-copy">
+        <p class="acronym"><b>G</b>eometry-<b>B</b>ased <b>A</b>nalysis of <b>L</b>andmarks &amp; <b>L</b>ines for <b>E</b>nhancing <b>T</b>echnique</p>
+        <h1>Arabesque technique analysis</h1>
+        <p>Upload a side-view photo of an arabesque. Each technique criteria is measured from the pose: supporting leg, working leg, hips, chest &amp; back, head, and arms. You get the corrections first, then every criteria with its measurement.</p>
+      </div>
+      <div class="upload-card card">
+        <label id="dropzone" class="dropzone" for="file">
+          <input id="file" type="file" accept="image/*" hidden>
+          <svg class="dz-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0-4 4m4-4 4 4M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="dz-title">Upload an arabesque photo</span>
+          <span class="dz-sub">Drag and drop, or click to browse · JPG or PNG</span>
+        </label>
+        <div class="or"><span>or</span></div>
+        <button id="example" class="example" type="button">
+          <img src="samples/example-arabesque.jpg" alt="">
+          <span class="ex-title">Use an example photo</span>
+          <svg class="ex-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <ul class="tips">
+          <li>Side view</li>
+          <li>Whole body in frame, feet included</li>
+          <li>Plain background works best</li>
+          <li>Photos are analyzed and not saved</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section id="results" class="results" hidden>
+      <aside class="photo-col">
+        <div class="card photo-card">
+          <div class="photo-wrap">
+            <img id="photo" alt="Uploaded photo">
+            <canvas id="overlay"></canvas>
+          </div>
+          <div class="photo-foot">
+            <p id="geo-caption" class="geo-caption"></p>
+            <div class="legend">
+              <span><i class="sw sw-work"></i>Working leg</span>
+              <span><i class="sw sw-body"></i>Landmarks</span>
+              <span><i class="sw sw-geo"></i>Measurement</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="report">
+        <div id="status" class="status"></div>
+        <div id="summary" class="card summary" hidden></div>
+        <section id="corrections-section" class="block" hidden>
+          <div class="block-head">
+            <h2>Corrections</h2>
+            <span id="corrections-count" class="count-badge"></span>
+          </div>
+          <div id="corrections"></div>
+        </section>
+        <section id="criteria-section" class="block" hidden>
+          <div class="block-head">
+            <h2>Criteria met</h2>
+          </div>
+          <div id="categories"></div>
+        </section>
+        <section id="na-section" class="block" hidden>
+          <div class="block-head">
+            <h2>Not scored</h2>
+          </div>
+          <div id="not-scored" class="card list"></div>
+        </section>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="about">
+      <h2>How it works</h2>
+      <ol class="pipeline">
+        <li><span class="step">1</span><b>Extract landmarks</b><span>MediaPipe finds 33 body points in the photo: shoulders, elbows, wrists, hips, knees, ankles, heels, and toes.</span></li>
+        <li><span class="step">2</span><b>Compute the geometry</b><span>A geometric framework I designed turns those points into angles, lines, and distances, like knee angle, leg height, and how square the hips and shoulders are.</span></li>
+        <li><span class="step">3</span><b>Criteria scores</b><span>Each measurement is checked against the technique criteria for an arabesque and marked as met, a moderate issue, or a major issue.</span></li>
+        <li><span class="step">4</span><b>Feedback</b><span>Every missed criteria gets a correction, shown with the measurement and the target.</span></li>
+      </ol>
+    </section>
+  </main>
+
+  <script type="module" src="web/app.js"></script>
+</body>
+</html>

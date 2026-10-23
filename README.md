@@ -4,7 +4,7 @@
 
 Upload a photo of a ballet arabesque and get feedback on each technique criteria, measured from the pose.
 
-**Live demo:** https://YOUR-USERNAME.github.io/gballet/
+**Live demo:** https://avaallwardt.github.io/gballet/
 
 ![Results page: corrections first, then every criteria with its measurement, with the measured angle drawn on the photo](docs/screenshot.png)
 

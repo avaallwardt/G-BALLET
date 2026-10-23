@@ -4,7 +4,7 @@
 
 Upload a photo of a ballet arabesque and receive feedback across 16 classical ballet technique criteria.
 
-**Live demo:** https://avaallwardt.github.io/gballet/
+**Live demo:** https://avaallwardt.github.io/GBALLET/
 
 ![Results page: corrections & interpreted geometric measurements for each of the 16+ criteria](docs/screenshot.png)
 

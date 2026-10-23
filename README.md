@@ -119,8 +119,8 @@ pose_landmarker_full.task  MediaPipe pose model
 - Arm criteria are written for 1st arabesque only.
 - Image analysis is only suitable for static poses, including arabesque. Analyzing ballet movement would require video analysis.
 
-## Citation
-- Independently designed the criteria for analyzing an arabesque.
+## Citations
 - Independently developed the code for extracting landmarks, computing measurements, and mapping measurements to interpretable ballet technique corrections.
+- Independently designed the criteria for analyzing an arabesque.
 - All technique analysis is based on my own ballet training.
 - Used Claude to create frontend and setup the live demo.

@@ -15,7 +15,7 @@ Upload a photo of a ballet arabesque and receive feedback across 16 classical ba
 3. Lists unsatisfied criteria in the form of corrections for the dancer, then displays satisfied criteria grouped by technique category
 4. Displays the measurement that informs each criterion score, and draws the measurement on the photo
 
-There's no trained classifier. MediaPipe identifies the body landmarks. Then a geometric framework I developed assesses ballet technique from the landmarks.
+MediaPipe identifies the body landmarks, then a geometric framework I developed assesses ballet technique from the landmarks. There is no trained classifier.
 
 ## How it works
 

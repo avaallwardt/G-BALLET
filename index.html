@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="web/style.css?v=4">
+  <link rel="stylesheet" href="web/style.css?v=7">
 </head>
 <body>
   <header class="topbar">
@@ -22,9 +22,10 @@
     <!-- Upload -->
     <section id="upload" class="landing">
       <div class="landing-copy">
+        <p class="wordmark">G-BALLET</p>
         <p class="acronym"><b>G</b>eometry-<b>B</b>ased <b>A</b>nalysis of <b>L</b>andmarks &amp; <b>L</b>ines for <b>E</b>nhancing <b>T</b>echnique</p>
         <h1>Ballet Arabesque Technique Analysis</h1>
-        <p>Upload a photo of your ballet arabesque. G-BALLET uses geometry to objectively assess your technique according to 16 criteria that define the ideal ballet arabesque.</p>
+        <p>Upload a photo of your ballet arabesque. <span class="nowrap">G-BALLET</span> uses geometry to objectively assess your technique according to 16 criteria that define the ideal ballet arabesque.</p>
       </div>
       <div class="upload-card card">
         <label id="dropzone" class="dropzone" for="file">
@@ -54,12 +55,20 @@
         <h2>What is an arabesque?</h2>
         <p>An arabesque is one of the most fundamental poses in ballet. The dancer balances on one straight leg while the other leg extends straight behind the body, with the arms reaching outward and the chest lifted. It looks simple, but every part of the body has a precise position. Small differences in angles and alignment differentiate good and excellent arabesque technique.</p>
       </div>
-      <dl class="terms">
-        <div><dt>Supporting leg</dt><dd>The standing leg. It should be fully straight.</dd></div>
-        <div><dt>Working leg</dt><dd>The lifted leg, extended behind the body. The goal is higher than 90°.</dd></div>
-        <div><dt>Turnout</dt><dd>Rotating the legs outward from the hips, so the knees and feet face away from the center of the body instead of straight ahead.</dd></div>
-        <div><dt>Arm placement</dt><dd>The arm on the supporting leg's side reaches forward, while the other arm reaches to the side slightly behind the torso.</dd></div>
-      </dl>
+<div class="criteria-box">
+        <h3>Technique Criteria Categories</h3>
+        <table class="criteria-table">
+          <thead><tr><th>Criteria category</th><th>Ideal technique</th></tr></thead>
+          <tbody>
+            <tr><td>Supporting leg</td><td>Straight and turned out</td></tr>
+            <tr><td>Working leg</td><td>Straight, above 90°, foot winged, turned out</td></tr>
+            <tr><td>Hips</td><td>Square</td></tr>
+            <tr><td>Chest &amp; back</td><td>Square, lifted</td></tr>
+            <tr><td>Front arm</td><td>Above eyeline, slight break in wrist and elbow</td></tr>
+            <tr><td>Side arm</td><td>Below shoulder, straight</td></tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <!-- Results -->

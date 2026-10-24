@@ -1,6 +1,6 @@
 # G-BALLET: Ballet Technique Analysis
 
-**G**eometry-**B**ased **A**nalysis of **L**andmarks & **L**ines for **E**nhancing Ballet **T**echnique
+**G**eometry-**B**ased **A**nalysis of **L**andmarks & **L**ines for **E**nhancing **T**echnique
 
 Upload a photo of a ballet arabesque and receive feedback across 16 classical ballet technique criteria.
 

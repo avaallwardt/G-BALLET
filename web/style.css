@@ -65,18 +65,15 @@ button { font: inherit; }
 
 /* ---------- Landing ---------- */
 .landing {
-  display: grid; grid-template-columns: 1fr; justify-items: center; gap: 32px;
-  padding: 16px 0 8px; text-align: center;
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 48px; align-items: center;
+  padding: 24px 0 8px;
 }
-.landing-copy { max-width: 720px; }
-.landing-copy p { margin-left: auto; margin-right: auto; }
-.landing-copy .wordmark { font: italic 600 60px/1 var(--serif); color: var(--accent); letter-spacing: .02em; margin: 0 0 14px; }
-.upload-card { width: min(620px, 100%); text-align: left; }
 .nowrap { white-space: nowrap; }
-.landing-copy .acronym { margin: 0 0 12px; font-size: 15px; color: var(--muted); letter-spacing: .01em; }
-.acronym b { color: var(--accent); font-weight: 700; }
-.landing h1 { font-size: 34px; line-height: 1.15; font-weight: 700; letter-spacing: -.02em; }
-.landing-copy p { margin-top: 14px; font-size: 16px; color: var(--muted); max-width: 620px; }
+.landing-copy { text-align: center; }
+.landing-copy .wordmark { font: italic 600 72px/1 var(--serif); color: var(--accent); letter-spacing: .02em; margin: 0 0 14px; }
+.landing-copy .acronym { font-size: 17px; line-height: 1.5; color: var(--ink-2); margin: 0 0 18px; }
+.landing-copy .acronym b { color: var(--accent); font-weight: 700; }
+.landing-copy .lede { font-size: 16px; line-height: 1.6; color: var(--muted); max-width: 460px; margin: 0 auto; }
 .upload-card { padding: 20px; }
 .dropzone {
   display: flex; flex-direction: column; align-items: center; gap: 6px;
@@ -300,8 +297,8 @@ blockquote {
   .page { padding: 20px 16px 48px; }
   .topbar-inner { padding: 0 16px; }
   .brand-sub { display: none; }
-  .landing h1 { font-size: 26px; }
-  .landing-copy .wordmark { font-size: 46px; }
+  .landing-copy .wordmark { font-size: 52px; }
+  .landing-copy .acronym { font-size: 15px; }
   .pipeline { grid-template-columns: 1fr; }
   .what { padding: 16px; }
   .row-btn { padding: 12px 14px; gap: 10px; }

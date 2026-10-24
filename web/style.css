@@ -257,6 +257,14 @@ blockquote {
   font-size: 15px; line-height: 1.65; color: var(--ink-2); max-width: 760px;
 }
 
+.site-footer {
+  max-width: 1200px; margin: 0 auto; padding: 24px 24px 40px;
+  border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); text-align: center;
+}
+.site-footer a { color: var(--accent); font-weight: 600; text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
+.site-footer .dot { margin: 0 8px; color: var(--muted); }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .landing { grid-template-columns: 1fr; gap: 24px; }

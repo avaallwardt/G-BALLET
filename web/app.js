@@ -41,6 +41,7 @@ $("again").addEventListener("click", () => {
   $("results").hidden = true;
   $("again").hidden = true;
   $("upload").hidden = false;
+  $("what").hidden = false;
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
 $("example").addEventListener("click", async () => {
@@ -56,6 +57,7 @@ async function run(file) {
   items = [];
   $("geo-caption").textContent = "";
   $("upload").hidden = true;
+  $("what").hidden = true;
   $("results").hidden = false;
   $("again").hidden = false;
   ["summary", "corrections-section", "criteria-section", "na-section"].forEach((id) => ($(id).hidden = true));

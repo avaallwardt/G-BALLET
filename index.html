@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GBALLET: Ballet Technique Analysis</title>
+  <title>G-BALLET: Ballet Technique Analysis</title>
   <meta name="description" content="Geometry-Based Analysis of Landmarks &amp; Lines for Enhancing Technique">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="web/style.css">
+  <link rel="stylesheet" href="web/style.css?v=4">
 </head>
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <a class="brand" href="./"><span class="brand-mark">GBALLET</span><span class="brand-sub">Ballet Technique Analysis</span></a>
+      <a class="brand" href="./"><span class="brand-mark">G-BALLET</span><span class="brand-sub">Ballet Technique Analysis</span></a>
       <button id="again" class="btn btn-secondary" type="button" hidden>New analysis</button>
     </div>
   </header>
@@ -24,7 +24,7 @@
       <div class="landing-copy">
         <p class="acronym"><b>G</b>eometry-<b>B</b>ased <b>A</b>nalysis of <b>L</b>andmarks &amp; <b>L</b>ines for <b>E</b>nhancing <b>T</b>echnique</p>
         <h1>Ballet Arabesque Technique Analysis</h1>
-        <p>Upload a side-view photo of an arabesque. Each technique criteria is measured from the pose: supporting leg, working leg, hips, chest &amp; back, head, and arms. You get the corrections first, then every criteria with its measurement.</p>
+        <p>Upload a photo of your ballet arabesque. G-BALLET uses geometry to objectively assess your technique according to 16 criteria that define the ideal ballet arabesque.</p>
       </div>
       <div class="upload-card card">
         <label id="dropzone" class="dropzone" for="file">
@@ -46,6 +46,20 @@
           <li>Photos are analyzed and not saved</li>
         </ul>
       </div>
+    </section>
+
+    <!-- What is an arabesque -->
+    <section id="what" class="what card">
+      <div class="what-intro">
+        <h2>What is an arabesque?</h2>
+        <p>An arabesque is one of the most fundamental poses in ballet. The dancer balances on one straight leg while the other leg extends straight behind the body, with the arms reaching outward and the chest lifted. It looks simple, but every part of the body has a precise position. Small differences in angles and alignment differentiate good and excellent arabesque technique.</p>
+      </div>
+      <dl class="terms">
+        <div><dt>Supporting leg</dt><dd>The standing leg. It should be fully straight.</dd></div>
+        <div><dt>Working leg</dt><dd>The lifted leg, extended behind the body. The goal is higher than 90°.</dd></div>
+        <div><dt>Turnout</dt><dd>Rotating the legs outward from the hips, so the knees and feet face away from the center of the body instead of straight ahead.</dd></div>
+        <div><dt>Arm placement</dt><dd>The arm on the supporting leg's side reaches forward, while the other arm reaches to the side slightly behind the torso.</dd></div>
+      </dl>
     </section>
 
     <!-- Results -->
@@ -107,9 +121,9 @@
   <footer class="site-footer">
     Designed and built by <a href="https://avaallwardt.github.io/" target="_blank" rel="noopener">Ava Allwardt</a>
     <span class="dot">·</span>
-    <a href="https://github.com/avaallwardt/GBALLET" target="_blank" rel="noopener">View on GitHub</a>
+    <a href="https://github.com/avaallwardt/G-BALLET" target="_blank" rel="noopener">View on GitHub</a>
   </footer>
 
-  <script type="module" src="web/app.js"></script>
+  <script type="module" src="web/app.js?v=4"></script>
 </body>
 </html>

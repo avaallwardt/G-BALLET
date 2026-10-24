@@ -65,13 +65,18 @@ button { font: inherit; }
 
 /* ---------- Landing ---------- */
 .landing {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 48px; align-items: center;
-  padding: 24px 0 8px;
+  display: grid; grid-template-columns: 1fr; justify-items: center; gap: 32px;
+  padding: 16px 0 8px; text-align: center;
 }
+.landing-copy { max-width: 720px; }
+.landing-copy p { margin-left: auto; margin-right: auto; }
+.landing-copy .wordmark { font: italic 600 60px/1 var(--serif); color: var(--accent); letter-spacing: .02em; margin: 0 0 14px; }
+.upload-card { width: min(620px, 100%); text-align: left; }
+.nowrap { white-space: nowrap; }
 .landing-copy .acronym { margin: 0 0 12px; font-size: 15px; color: var(--muted); letter-spacing: .01em; }
 .acronym b { color: var(--accent); font-weight: 700; }
-.landing h1 { font-size: 40px; line-height: 1.15; font-weight: 700; letter-spacing: -.02em; }
-.landing-copy p { margin-top: 14px; font-size: 16px; color: var(--muted); max-width: 460px; }
+.landing h1 { font-size: 34px; line-height: 1.15; font-weight: 700; letter-spacing: -.02em; }
+.landing-copy p { margin-top: 14px; font-size: 16px; color: var(--muted); max-width: 620px; }
 .upload-card { padding: 20px; }
 .dropzone {
   display: flex; flex-direction: column; align-items: center; gap: 6px;
@@ -108,11 +113,15 @@ button { font: inherit; }
 }
 .what h2 { font-size: 20px; font-weight: 700; letter-spacing: -.01em; }
 .what-intro p { margin-top: 10px; color: var(--ink-2); font-size: 15px; line-height: 1.65; }
-.terms { margin: 0; display: grid; align-content: start; }
-.terms div { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 16px; padding: 10px 0; border-top: 1px solid var(--line-2); font-size: 14px; }
-.terms div:first-child { border-top: 0; padding-top: 2px; }
-.terms dt { font-weight: 600; color: var(--ink); }
-.terms dd { margin: 0; color: var(--muted); }
+.criteria-box h3 { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+.criteria-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.criteria-table th {
+  text-align: left; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em;
+  color: var(--muted); padding: 0 12px 8px 0; border-bottom: 1px solid var(--line);
+}
+.criteria-table td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line-2); vertical-align: top; color: var(--ink-2); }
+.criteria-table td:first-child { font-weight: 600; color: var(--ink); width: 38%; }
+.criteria-table tr:last-child td { border-bottom: 0; }
 
 /* ---------- Results layout ---------- */
 .results {
@@ -291,10 +300,10 @@ blockquote {
   .page { padding: 20px 16px 48px; }
   .topbar-inner { padding: 0 16px; }
   .brand-sub { display: none; }
-  .landing h1 { font-size: 30px; }
+  .landing h1 { font-size: 26px; }
+  .landing-copy .wordmark { font-size: 46px; }
   .pipeline { grid-template-columns: 1fr; }
   .what { padding: 16px; }
-  .terms div { grid-template-columns: 1fr; gap: 2px; }
   .row-btn { padding: 12px 14px; gap: 10px; }
   .row-detail { padding: 0 14px 14px 44px; }
   .measure th { width: 45%; }

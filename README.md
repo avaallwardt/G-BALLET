@@ -1,4 +1,4 @@
-# GBALLET: Ballet Technique Analysis
+# G-BALLET: Ballet Technique Analysis
 
 **G**eometry-**B**ased **A**nalysis of **L**andmarks & **L**ines for **E**nhancing Ballet **T**echnique
 
@@ -8,7 +8,7 @@ Upload a photo of a ballet arabesque and receive feedback across 16 classical ba
 
 ![Results page: corrections & interpreted geometric measurements for each of the 16+ criteria](docs/screenshot.png)
 
-## What GBALLET does
+## What G-BALLET does
 
 1. Verifies the photo is a ballet arabesque (possible error inputs: dancer not detected, leg not lifted, leg in front, attitude, photo upside down)
 2. Translates geometric measurements into 16 interpretable criteria that measure technique of the supporting leg, working leg, hips, chest and back, head, and arms
